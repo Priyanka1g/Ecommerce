@@ -1,0 +1,48 @@
+/* cartstyle.css */
+
+.cardsdetails {
+    margin-top: 20px;
+  }
+  
+  .card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cart-empty {
+    margin-top: 50px;
+    font-size: 24px;
+    color: #888;
+  }
+  
+  .product-img img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  .product-name p {
+    margin: 0;
+  }
+  
+  .prdct-qty-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .prdct-qty-btn {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .qty-input-box {
+    width: 30px;
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  /* Add more styles as needed */
+  

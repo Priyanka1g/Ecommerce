@@ -1,0 +1,80 @@
+/* Login.module.css */
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.login {
+    width: 90%;
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.control {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.control label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.control input {
+    flex: 1;
+    font: inherit;
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.control input:focus {
+    outline: none;
+    border-color: #1e57f3;
+    background: #bfccf0;
+}
+
+.control.invalid input {
+    border-color: red;
+    background: #fbdada;
+}
+
+.actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.btn:hover:enabled {
+    background-color: #080808;
+    color: white;
+}
