@@ -78,7 +78,7 @@ const Cart = () => {
                         action={
                             carts.length > 0 && (
                                 // <Button variant="contained" color="secondary" size="small" onClick={emptycart}>
-                                <Button variant="contained" color="secondary" size="small" onClick={() => handelEmpty(carts)}>
+                                <Button variant="contained" color="primary" size="small" onClick={() => handelEmpty(carts)}>
                                     <Delete /> Empty Cart
                                 </Button>
                             )
@@ -106,7 +106,7 @@ const Cart = () => {
                                         {carts.map((data) => (
                                             <TableRow key={data.id}>
                                                 <TableCell>
-                                                    <Button variant="contained" color="secondary" onClick={() => handleDecrement(data.id)}>
+                                                    <Button variant="contained" color="primary" onClick={() => handleDecrement(data.id)}>
                                                         <Delete />
                                                     </Button>
                                                 </TableCell>
