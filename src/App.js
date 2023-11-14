@@ -24,6 +24,7 @@ function App(){
         <>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Navbar  onLogout = {logoutHandler}/>}
+        
         <Routes>
           <Route path='/home' exact element={<Cards/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>

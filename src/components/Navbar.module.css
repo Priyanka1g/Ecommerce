@@ -1,11 +1,10 @@
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: blue;
+  background-color: #1976D2; /* Update to your preferred color */
   color: white;
-  padding: 20px;
+  padding: 10px; /* Adjust padding as needed */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -15,8 +14,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%; /* Set a percentage value for responsiveness */
-  max-width: 1200px; /* Set a maximum width */
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
