@@ -18,7 +18,7 @@ const Login = (props) => {
     props.onLogin(enteredEmail, enteredPassword);
 
     // Redirect to home page after successful login
-    navigate("/home");
+    navigate("/");
   };
 
   const emailChangeHandler = (event) => {

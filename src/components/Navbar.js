@@ -28,7 +28,7 @@ const Navbar = (props) => {
         />
       </div>
       <div className={classes.rightSection}>
-        <NavLink to="/home" className={classes.cartLink}>
+        <NavLink to="/" className={classes.cartLink}>
           <button className={classes.button} color="primary">Products</button>
         </NavLink>
         <button className={classes.button} onClick={props.onLogout}>
