@@ -5,12 +5,12 @@ import { useGetProductByIdQuery } from '../redux/features/apiSlice';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './CardDetails.css'; // Import your CSS file
+import './ProductDetails.css'; // Import your CSS file
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
 import {toast} from 'react-hot-toast';
-const CardDetails = () => {
+const ProductDetails = () => {
   const { id } = useParams();
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
   const dispatch = useDispatch()
@@ -98,4 +98,4 @@ const CardDetails = () => {
   );
 };
 
-export default CardDetails;
+export default ProductDetails;

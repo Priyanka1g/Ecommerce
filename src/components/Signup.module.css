@@ -1,13 +1,13 @@
-/* Login.module.css */
+/* Signup.module.css */
 
-.loginContainer {
+.signupContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
   
-  .login {
+  .signup {
     width: 300px;
     padding: 20px;
     border-radius: 8px;
@@ -48,11 +48,5 @@
   .btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-  }
-  
-  .signupLink {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
   }
   

@@ -18,7 +18,7 @@ import styles from './Navbar.module.css';
 import { useGetProductsQuery } from "../redux/features/apiSlice";
 import { addToCart } from "../redux/features/cartSlice";
 import { Link } from "react-router-dom";
-const Cards = () => {
+const ProductCards = () => {
   const dispatch = useDispatch();
   const { data: products = [], isLoading, isError } = useGetProductsQuery();
   const [searchTerm, setSearchTerm] = useState("");
@@ -157,4 +157,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default ProductCards;
