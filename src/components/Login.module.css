@@ -1,58 +1,60 @@
-/* Login.module.css */
-
 .loginContainer {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: 100vh;
   }
   
   .login {
-    width: 300px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle box shadow */
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
   }
   
   .control {
     margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    padding: 0 15px;
   }
   
   input {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .actions {
-    text-align: center;
-    margin-top: 15px;
+    border-radius: 5px;
   }
   
   .btn {
-    background-color: #4caf50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    width: 100%;
   }
   
   .signupLink {
-    color: #3498db;
+    color: #1976D2;
     text-decoration: none;
     font-weight: bold;
   }
   
+  .signupLink:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .loginContainer {
+      padding: 20px; 
+    }
+  
+    .login {
+      border-radius: 0; 
+      padding: 1px; 
+    }
+  }

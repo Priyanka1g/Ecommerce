@@ -9,18 +9,19 @@ import './ProductDetails.css'; // Import your CSS file
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
-import {toast} from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
+
 const ProductDetails = () => {
+  //getting the id from the url
   const { id } = useParams();
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const addData = (data) => {
     toast.success("Item added successfully");
     dispatch(addToCart(data));
-   
   };
-
 
   const buyNow = (data) => {
     toast.success("Product bought successfully");
@@ -46,8 +47,8 @@ const ProductDetails = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,       
-    autoplaySpeed: 3000,  
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
@@ -72,26 +73,12 @@ const ProductDetails = () => {
             {/* Add more offers as needed */}
           </ul>
           <p className="view-more-offers">View 11 more offers</p>
-          <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    addData(product);
-                  }}
-                  style={{ marginTop: "10px" }}
-                >
-                  Add to Cart
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginTop: "10px", marginLeft:"10px"}} onClick={() => {
-                    buyNow(product);
-                  }}
-                >
-                  Buy now
-                </Button>
-                
+          <Button variant="contained" color="primary" onClick={() => { addData(product); }} style={{ marginTop: "10px" }}>
+            Add to Cart
+          </Button>
+          <Button variant="contained" color="primary" style={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => {buyNow(product)}}>
+            Buy now
+          </Button>
         </div>
       </div>
     </div>

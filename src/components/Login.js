@@ -1,14 +1,11 @@
 // Login.js
-
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
-import { Card } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
-
+import { Link } from 'react-router-dom';
 const Login = (props) => {
   const navigate = useNavigate();
-
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [formIsValid, setFormIsValid] = useState(false);
@@ -16,8 +13,6 @@ const Login = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     props.onLogin(enteredEmail, enteredPassword);
-
-    // Redirect to home page after successful login
     navigate('/');
   };
 
@@ -36,40 +31,47 @@ const Login = (props) => {
   };
 
   return (
-    <div className={classes.loginContainer}>
-      <Card className={classes.login}>
-        <form onSubmit={submitHandler}>
-          <div className={`${classes.control}`}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={enteredEmail}
-              onChange={emailChangeHandler}
-            />
-          </div>
-          <div className={`${classes.control}`}>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={enteredPassword}
-              onChange={passwordChangeHandler}
-            />
-          </div>
-          <div className={classes.actions}>
-            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+    <div className={classes.loginContainer} style={{ backgroundImage: 'url("1.jpg")', backgroundSize: 'cover' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={6} md={5} lg={4}>
+          <Card className={classes.login}>
+            <Typography variant="h5" className={classes.title}>
               Login
-            </Button>
-          </div>
-          <p>
-            Don't have an account?{' '}
-            <Link to="/signup" className={classes.signupLink}>
-              Sign up
-            </Link>
-          </p>
-        </form>
-      </Card>
+            </Typography>
+            <form onSubmit={submitHandler}>
+              <div className={`${classes.control}`}>
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={enteredEmail}
+                  onChange={emailChangeHandler}
+                />
+              </div>
+              <div className={`${classes.control}`}>
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={enteredPassword}
+                  onChange={passwordChangeHandler}
+                />
+              </div>
+              <div className={classes.actions}>
+                <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+                  Login
+                </Button>
+              </div>
+              <p>
+                Don't have an account?{' '}
+                <Link to="/signup" className={classes.signupLink}>
+                  Sign up
+                </Link>
+              </p>
+            </form>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

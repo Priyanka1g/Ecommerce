@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Typography, Button, Card, CardHeader, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from '@mui/material';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addToCart, removeToCart, removeSingleIteams, emptycartIteam } from '../redux/features/cartSlice';
-// import toast from 'react-hot-toast';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { Delete } from '@mui/icons-material';
@@ -15,36 +12,39 @@ import { useNavigate } from 'react-router-dom';
 const Cart = () => {
     const [totalprice, setPrice] = useState(0);
     const [totalquantity, setTotalQuantity] = useState(0);
-
-    const { carts } = useSelector((state) => state.cart);
-
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const { carts } = useSelector((state) => state.cart);
+
+    //functions that handling the increment. decrement
 
     const handleIncrement = (data) => {
         dispatch(addToCart(data))
     }
 
-    const handleDecrement = (data) => {
-        dispatch(removeToCart(data))
+    const handleDecrement = (id) => {
+        dispatch(removeToCart(id))
     }
 
-    const handleSingleDecrement = (data) => {
-        dispatch(removeSingle(data))
+    const handleSingleDecrement = (id) => {
+        dispatch(removeSingle(id))
     }
-    const handelEmpty = (data) => {
-        dispatch(clearCart(data))
+
+    //function that handling the empty cart
+    const handelEmpty = () => {
+        dispatch(clearCart())
     }
     
-  const handleGoToCheckout = () => {
-    navigate('/checkout', {
-      state: {
-        totalprice: totalprice,
-        totalquantity: totalquantity,
-      },
-    });
-  };
+    const handleGoToCheckout = () => {
+        navigate('/checkout', {
+            state: {
+                totalprice: totalprice,
+                totalquantity: totalquantity,
+            },
+        });
+    };
 
+    //calculating total price and total quantity
     const total = () => {
         let totalprice = 0;
         carts.map((item, ind) => {
@@ -60,11 +60,11 @@ const Cart = () => {
         setTotalQuantity(totalquantity)
     }
 
-
     useEffect(() => {
         total()
         totalqnt()
     }, [total, totalqnt])
+    
     return (
         <div className="row justify-content-center m-0">
             <div className="col-md-8 mt-5 mb-5">
@@ -77,7 +77,6 @@ const Cart = () => {
                         }
                         action={
                             carts.length > 0 && (
-                                // <Button variant="contained" color="secondary" size="small" onClick={emptycart}>
                                 <Button variant="contained" color="primary" size="small" onClick={() => handelEmpty(carts)}>
                                     <Delete /> Empty Cart
                                 </Button>
@@ -119,7 +118,7 @@ const Cart = () => {
                                                     <div className="prdct-qty-container">
                                                         <Button
                                                             variant="outlined"
-                                                            onClick={(data.qty >= 1 ? () => handleSingleDecrement(data.id) : () => handleDecrement(data.id))}
+                                                            onClick={(data.qty >1 ? () => handleSingleDecrement(data.id) : () => handleDecrement(data.id))}
                                                         >
                                                             <RemoveCircleIcon />
                                                         </Button>
@@ -143,13 +142,11 @@ const Cart = () => {
                                             <TableCell colSpan={4}></TableCell>
                                             <TableCell>Total Price:</TableCell>
                                             <TableCell align="right">₹ {totalprice}</TableCell>
-
                                         </TableRow>
                                         <TableRow>
                                             <TableCell colSpan={4}></TableCell>
                                             <TableCell align="right"><Button variant="contained" color="primary" size="small" onClick={handleGoToCheckout}>
                                                 go to checkout</Button></TableCell>
-
                                         </TableRow>
                                     </TableBody>
                                 </Table>

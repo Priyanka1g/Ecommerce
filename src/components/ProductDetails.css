@@ -1,4 +1,4 @@
-/* CardDetails.css */
+
 .card-details-container {
     display: flex;
     justify-content: space-between;
@@ -66,8 +66,17 @@
   
   .view-more-offers {
     font-size: 16px;
-    color: #007bff; /* Add your preferred color */
+    color: #007bff; 
     cursor: pointer;
     margin-top: 10px;
   }
+  @media (min-width: 768px) {
+    .card-details-container {
+      flex-direction: row; 
+    }
   
+    .left-section,
+    .right-section {
+      width: 50%; 
+    }
+  }

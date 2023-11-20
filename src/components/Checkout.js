@@ -25,11 +25,10 @@ const Checkout = () => {
             </Button>
           </Paper>
         </Grid>
-
         {/* Right Side: Order Summary */}
         <Grid item xs={12} md={6}>
           <Paper style={{ padding: '20px', border: '2px solid black' }}>
-          <Box style={{ background: 'black', color: 'white', padding: '10px', marginBottom: '10px' }}>
+            <Box style={{ background: 'black', color: 'white', padding: '10px', marginBottom: '10px' }}>
               <Typography variant="h5">Order Summary</Typography>
             </Box>
             <Box display="flex" justifyContent="space-between" alignItems="center" marginTop="10px">
@@ -46,5 +45,4 @@ const Checkout = () => {
     </div>
   );
 };
-
 export default Checkout;
