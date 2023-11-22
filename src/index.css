@@ -1,21 +1,27 @@
-
 /* Style for the entire page */
 body {
   margin: 0;
   /* background-color: rgb(0, 0, 0); */
-  overflow-y: scroll; /* Always show vertical scrollbar */
+  overflow-y: scroll;
+  /* Always show vertical scrollbar */
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
 }
 
 /* Style for the scrollbar */
 body::-webkit-scrollbar {
-  width:15px; /* Set the width of the scrollbar */
+  width: 15px;
+  /* Set the width of the scrollbar */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #888; /* Set the color of the thumb */
-  border-radius:0px; /* Round the corners of the thumb */
+  background-color: #888;
+  /* Set the color of the thumb */
+  border-radius: 0px;
+  /* Round the corners of the thumb */
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #333; /* Set the color of the track */
+  background-color: #333;
+  /* Set the color of the track */
 }

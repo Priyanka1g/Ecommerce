@@ -1,82 +1,41 @@
-
+/* ProductDetails.css */
 .card-details-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  padding: 20px;
+}
+
+.product-image-container {
+  position: sticky;
+  top: 0; /* Adjust the top position as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* Adjust the gap between the image and buttons */
+}
+
+.button-container {
+  /* display: flex;
+  flex-direction: column; */
+  gap: 20px; /* Adjust the gap between the buttons */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.right-section {
+  flex: 1;
+  padding-left: 20px;
+  overflow-y: auto; /* Allow the right section to scroll if content exceeds height */
+}
+
+@media (min-width: 768px) {
+  .product-image-container {
+    width: 50%;
   }
-  
-  .left-section {
-    flex: 1;
-    width: 60%; /* Adjust the width as needed */
-  }
-  
-  .product-image {
-    width: 100%;
-    height: auto;
-  }
-  
+
   .right-section {
-    flex: 1;
-    padding-left: 20px;
+    width: 50%;
   }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .description {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .price {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
-  .rating {
-    font-size: 16px;
-  }
-  
-.additional-lines {
-    margin-top: 20px;
-  }
-  
-  .offer-heading {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .view-more-offers {
-    font-size: 16px;
-    color: #007bff; 
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  @media (min-width: 768px) {
-    .card-details-container {
-      flex-direction: row; 
-    }
-  
-    .left-section,
-    .right-section {
-      width: 50%; 
-    }
-  }
+}

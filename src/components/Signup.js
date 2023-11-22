@@ -38,7 +38,6 @@ const Signup = (props) => {
         enteredPassword.trim().length > 6
     );
   };
-
   return (
     <div className={classes.signupContainer} style={{ backgroundImage: 'url("1.jpg")', backgroundSize: 'cover' }}>
       <Grid container justifyContent="center" className={classes.grid}>

@@ -34,7 +34,7 @@ const Cart = () => {
     const handelEmpty = () => {
         dispatch(clearCart())
     }
-    
+
     const handleGoToCheckout = () => {
         navigate('/checkout', {
             state: {
@@ -45,14 +45,14 @@ const Cart = () => {
     };
 
     //calculating total price and total quantity
-    const total = () => {
+    const priceHandler = () => {
         let totalprice = 0;
         carts.map((item, ind) => {
             totalprice = item.price * item.qty + totalprice
         })
         setPrice(totalprice)
     }
-    const totalqnt = () => {
+    const quantityHandler = () => {
         let totalquantity = 0;
         carts.map((item, ind) => {
             totalquantity = item.qty + totalquantity
@@ -61,10 +61,11 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        total()
-        totalqnt()
-    }, [total, totalqnt])
-    
+        priceHandler()
+        quantityHandler()
+    }, [priceHandler, quantityHandler])
+
+
     return (
         <div className="row justify-content-center m-0">
             <div className="col-md-8 mt-5 mb-5">
@@ -118,7 +119,7 @@ const Cart = () => {
                                                     <div className="prdct-qty-container">
                                                         <Button
                                                             variant="outlined"
-                                                            onClick={(data.qty >1 ? () => handleSingleDecrement(data.id) : () => handleDecrement(data.id))}
+                                                            onClick={(data.qty > 1 ? () => handleSingleDecrement(data.id) : () => handleDecrement(data.id))}
                                                         >
                                                             <RemoveCircleIcon />
                                                         </Button>
@@ -145,7 +146,8 @@ const Cart = () => {
                                         </TableRow>
                                         <TableRow>
                                             <TableCell colSpan={4}></TableCell>
-                                            <TableCell align="right"><Button variant="contained" color="primary" size="small" onClick={handleGoToCheckout}>
+                                            <TableCell align="right"><Button variant="contained" color="primary" size="small" onClick={() =>handleGoToCheckout(carts)}
+                                             style={{ marginTop: "10px" }} >
                                                 go to checkout</Button></TableCell>
                                         </TableRow>
                                     </TableBody>

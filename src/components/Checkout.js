@@ -20,7 +20,7 @@ const Checkout = () => {
             <TextField fullWidth margin="normal" label="Address" variant="outlined" />
             <TextField fullWidth margin="normal" label="Mobile Number" variant="outlined" />
             <TextField fullWidth margin="normal" label="Email" variant="outlined" />
-            <Button variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }}>
+            <Button variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }} >
               Continue to Payment
             </Button>
           </Paper>

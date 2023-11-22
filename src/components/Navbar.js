@@ -23,6 +23,9 @@ const Navbar = (props) => {
           />
         </div>
         <div className={classes.rightSection}>
+        <NavLink to="/userprofile" className={classes.cartLink}>
+            <button className={classes.button} color="primary">My Profile</button>
+          </NavLink>
           <NavLink to="/" className={classes.cartLink}>
             <button className={classes.button} color="primary">Products</button>
           </NavLink>
@@ -34,6 +37,7 @@ const Navbar = (props) => {
               <ShoppingCart />
             </Badge>
           </NavLink>
+          
         </div>
       </div>
     </header>

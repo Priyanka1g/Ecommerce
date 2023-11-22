@@ -1,0 +1,76 @@
+/* UserProfile.css */
+
+.user-profile-container {
+    padding: 20px;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.profile-menu a:hover {
+    color: #6464bb;
+    /* Change color on hover as needed */
+}
+
+.logout {
+    cursor: pointer;
+    color: #ff4500;
+    font-weight: bold;
+}
+
+.profile-content {
+    padding: 20px;
+}
+
+.personal-info {
+    margin-bottom: 30px;
+}
+
+.edit-link {
+    cursor: pointer;
+    color: #007bff;
+    /* Change color as needed */
+}
+
+.faqs {
+    margin-top: 20px;
+}
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.deactivate-link {
+    cursor: pointer;
+    color: #ff0000;
+    /* Change color as needed */
+}

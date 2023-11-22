@@ -1,5 +1,18 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardMedia, Typography, Button, Grid, Select, MenuItem, FormControl, InputLabel, TextField, } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  Grid,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  TextField,
+  Divider,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useGetProductsQuery } from "../redux/features/apiSlice";
@@ -12,6 +25,7 @@ const ProductCards = (props) => {
   const { data: products = [], isLoading, isError } = useGetProductsQuery();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("default");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const addData = (data) => {
     toast.success("Item added successfully");
@@ -25,8 +39,12 @@ const ProductCards = (props) => {
   if (isError) {
     return <div>Error loading products</div>;
   }
-  const filterprod = products.filter((item)=>item.title.toLowerCase().includes(props.search.toLowerCase()))
-  const filteredProducts = filterprod
+
+  const filterByCategory = selectedCategory !== "All"
+    ? products.filter((item) => item.category === selectedCategory)
+    : products;
+
+  const filteredProducts = filterByCategory
     .filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -44,14 +62,31 @@ const ProductCards = (props) => {
       }
     });
 
+  const categories = Array.from(new Set(products.map((item) => item.category)));
+
   return (
     <>
       <div style={{ backgroundColor: '#f0f0f0', padding: '20px' }}>
-        <Typography variant="h4" style={{ marginBottom: "20px" }}>
-          Featured Products
-        </Typography>
-        <Grid container spacing={3} style={{ marginBottom: "20px" }}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <FormControl fullWidth variant="outlined">
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                label="Category"
+                style={{ marginBottom: "10px" }}
+              >
+                <MenuItem value="All">All</MenuItem>
+                {categories.map((category) => (
+                  <MenuItem key={category} value={category}>
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               label="Search products"
@@ -60,7 +95,7 @@ const ProductCards = (props) => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={2}>
             <FormControl fullWidth variant="outlined">
               <InputLabel>Sort by Price</InputLabel>
               <Select
@@ -75,7 +110,7 @@ const ProductCards = (props) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={2}>
             <FormControl fullWidth variant="outlined">
               <InputLabel>Sort by Rating</InputLabel>
               <Select
@@ -92,15 +127,9 @@ const ProductCards = (props) => {
           </Grid>
         </Grid>
 
-        <img
-          className="_2OHU_q aA9eLq"
-          alt="a"
-          srcSet="https://rukminim2.flixcart.com/fk-p-flap/3600/3600/image/d1e510f2702db1f9.jpg?q=80 2x, https://rukminim2.flixcart.com/fk-p-flap/1800/1800/image/d1e510f2702db1f9.jpg?q=80 1x"
-          src="https://rukminim2.flixcart.com/fk-p-flap/1800/1800/image/d1e510f2702db1f9.jpg?q=80"
-          data-tkid="M_c1f81ee4-4b2d-419c-a773-a10e616b2b0b_1.0QZXPLOT3WWW"
-          style={{ width: "100%", height: "auto", marginBottom: "30px" }}
-        />
-        <Grid container spacing={12}>
+        <Divider style={{ margin: '20px 0' }} />
+
+        <Grid container spacing={3}>
           {filteredProducts.map((item, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <Card style={{ height: "100%", display: "flex", flexDirection: "column" }}>
