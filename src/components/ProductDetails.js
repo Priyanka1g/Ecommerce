@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-  Box,
-  Container,
-  Button,
-  IconButton,
-} from '@mui/material';
+import { Grid, Typography, Box, Container, Button, IconButton, } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -45,12 +38,9 @@ const ProductDetails = () => {
   return (
     <Container>
       <Grid container spacing={2}>
-        {/* Left Column - Images */}
         <Grid item xs={12} md={6} style={{ position: 'sticky', top: '80px', height: 'calc(100vh - 10px)' }}>
           <Gallery items={images} />
         </Grid>
-
-        {/* Right Column - Product Details */}
         <Grid item xs={12} md={6}>
           <Box p={2}>
             <Typography variant="h4" gutterBottom>
@@ -59,9 +49,8 @@ const ProductDetails = () => {
             <Typography variant="body1" paragraph>
               {product.description}
             </Typography>
-            {/* Add other product details here */}
             <Box mt={2} mb={2}>
-              <Button variant="contained" color="warning" onClick={() => console.log('Buy now')} style={{marginRight:"5px"}}>
+              <Button variant="contained" color="warning" onClick={() => console.log('Buy now')} style={{ marginRight: "5px" }}>
                 Buy now
               </Button>
               <Button
@@ -79,7 +68,6 @@ const ProductDetails = () => {
                 <ShoppingCartIcon />
               </IconButton>
             </Box>
-            {/* Display available offers with good styling */}
             <Box mt={2}>
               <Typography variant="h6" gutterBottom>
                 Available Offers
@@ -100,7 +88,6 @@ const ProductDetails = () => {
                 View 3 more offers
               </Typography>
             </Box>
-            {/* Review Section */}
             <ReviewSection productId={id} />
           </Box>
         </Grid>

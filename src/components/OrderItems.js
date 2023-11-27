@@ -1,24 +1,7 @@
-// OrderItems.js
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    Typography,
-    Card,
-    CardContent,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Button,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    TextField,
-    Rating,
+    Typography, Card, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Rating,
 } from '@mui/material';
 import { addReview } from '../redux/features/reviewSlice';
 
@@ -60,11 +43,11 @@ const OrderItems = () => {
             designation: 'Certified buyer',
             date: currentDate.toISOString(),
             image: reviewImage,
-          };
-        
-          dispatch(addReview(reviewData));
-          handleCloseReviewDialog();
         };
+
+        dispatch(addReview(reviewData));
+        handleCloseReviewDialog();
+    };
 
 
     return (

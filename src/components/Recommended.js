@@ -1,7 +1,5 @@
-// import Button from "../components/Button";
 import Button from "./layout/Button";
 import "./Recomended.css";
-// import { Button } from "@mui/material";
 const Recommended = () => {
   return (
     <>

@@ -10,15 +10,11 @@ const ReviewSection = ({ productId }) => {
     console.log(productId)
     const productReviews = reviews.filter((review) => review.productId == productId);
     console.log(productReviews)
-    // Calculate overall ratings based on actual data
     const overallRating = calculateOverallRating(reviews);
-
-    // Calculate overall reviews based on actual data
     const overallReviews = calculateOverallReviews(reviews);
 
     return (
         <Box>
-            {/* Title with overall reviews */}
             <Box mb={3} mt={2}>
                 <Typography variant="h5" gutterBottom>
                     Ratings & Reviews
@@ -44,11 +40,8 @@ const ReviewSection = ({ productId }) => {
                     ))}
                 </Box>
             </Box>
-
-            {/* User Reviews */}
             {productReviews.map((review, index) => (
                 <Box key={index} mb={3}>
-                    {/* User Rating */}
                     <Box display="flex" alignItems="center" mb={1}>
                         <Rating value={review.rating} readOnly />
                         <Typography variant="body2" color="textSecondary" sx={{ ml: 1 }}>
@@ -65,8 +58,6 @@ const ReviewSection = ({ productId }) => {
                             {review.reviewDescription}
                         </Typography>
                     )}
-
-                    {/* Review Image */}
                     {review.image && (
                         <img
                             src={URL.createObjectURL(review.image)}
@@ -74,8 +65,6 @@ const ReviewSection = ({ productId }) => {
                             style={{ width: '100px', maxHeight: '100px', objectFit: 'cover' }}
                         />
                     )}
-
-                    {/* User Details and Date */}
                     <Typography variant="body2" color="textSecondary">
                         {review.userName}, {review.designation}, {review.location}
                     </Typography>
@@ -87,25 +76,18 @@ const ReviewSection = ({ productId }) => {
         </Box>
     );
 };
-
-// Helper function to calculate overall rating
 const calculateOverallRating = (reviews) => {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return reviews.length > 0 ? totalRating / reviews.length : 0;
 };
-
-// Helper function to calculate overall reviews
 const calculateOverallReviews = (reviews) => {
-    // Implement your logic to calculate overall reviews here
-    // For now, using dummy data as an example
     return {
-        totalRatings: reviews.length * 5, // Assuming each review is rated 5 for simplicity
+        totalRatings: reviews.length * 5,
         totalReviews: reviews.length,
-        ratings: Array(5).fill(reviews.length), // Assuming 5-star ratings for simplicity
+        ratings: Array(5).fill(reviews.length),
         categoryRatings: [
             { name: 'Category 1', value: 4.5 },
             { name: 'Category 2', value: 4.2 },
-            // Add more categories as needed
         ],
     };
 };
