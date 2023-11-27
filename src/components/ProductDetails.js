@@ -1,34 +1,32 @@
-// ProductDetails.js
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import {
+  Grid,
+  Typography,
+  Box,
+  Container,
+  Button,
+  IconButton,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import "react-image-gallery/styles/css/image-gallery.css";
+import Gallery from 'react-image-gallery';
 import { useGetProductByIdQuery } from '../redux/features/apiSlice';
-import './ProductDetails.css'; // Import your CSS file
-import { Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import ReviewSection from './ReviewSection';
 import { addToCart } from '../redux/features/cartSlice';
-import { toast } from 'react-hot-toast';
-import Reviews from './Reviews';
-import QuestionAnswer from './QuestionAnswer';
-import {Typography} from '@mui/material';
+import { useDispatch } from 'react-redux';
+
 const ProductDetails = () => {
   const { id } = useParams();
-  const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // Fetch product data using useGetProductByIdQuery
+  const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
 
   const addData = (data) => {
-    toast.success('Item added successfully');
+    // toast.success("Item added successfully");
     dispatch(addToCart(data));
-  };
-
-  const buyNow = (data) => {
-    toast.success('Product bought successfully');
-    navigate('/checkout', {
-      state: {
-        totalprice: data.price,
-        totalquantity: 1,
-      },
-    });
   };
 
   if (isLoading) {
@@ -39,79 +37,75 @@ const ProductDetails = () => {
     return <div>Error loading</div>;
   }
 
+  const images = product.images.map(image => ({
+    original: image,
+    thumbnail: image,
+  }));
+
   return (
-    <div className="card-details-container">
-      <div className="product-image-container ">
-        <img src={product.images[0]} alt={`Product`} className="product-image" />
-        <div className="button-container">
-          <Button variant="contained" color="primary" onClick={() => addData(product)} style={{marginRight:'10px'}}>
-            Add to Cart
-          </Button>
-          <Button variant="contained" color="primary" onClick={() => buyNow(product)}>
-            Buy now
-          </Button>
-        </div>
-        <div className="questions-section">
-          <Typography variant="h5" style={{ marginBottom: '16px' }}>
-            Questions and Answers
-          </Typography>
+    <Container>
+      <Grid container spacing={2}>
+        {/* Left Column - Images */}
+        <Grid item xs={12} md={6} style={{ position: 'sticky', top: '80px', height: 'calc(100vh - 10px)' }}>
+          <Gallery items={images} />
+        </Grid>
 
-          <QuestionAnswer
-            question="Can we use it while we are eating?"
-            answer="Yes, only if you are not eating the mouse."
-            author="Flipkart Customer"
-            certification="Certified Buyer"
-            key={1}
-          />
-
-          <QuestionAnswer
-            question="Why I was not provided with a USB receiver?"
-            answer="USB receiver inside the back panel."
-            author="NEEL SEN"
-            certification="Certified Buyer"
-            key={2}
-          />
-
-          <QuestionAnswer
-            question="How to connect the mouse? As it has no Bluetooth connection."
-            answer="Just put in the USB (receiver) to your PC... Bluetooth is not even required."
-            author="Rohit Negi"
-            certification="Certified Buyer"
-            key={3}
-          />
-
-          {/* Add more questions and answers as needed */}
-        </div>
-      </div>
-
-      <div className="right-section">
-        <h2>{product.title}</h2>
-        <p className="description">{product.description}</p>
-        <p className="price">
-          Price: <span className="bold">{product.price}</span>
-        </p>
-        <p className="rating">Rating: {product.rating}</p>
-        <div className="additional-lines">
-          <p className="offer-heading">Available Offers:</p>
-          <ul>
-            <li>Bank Offer: Get additional ₹250 off on SBI Bank Credit Card Transactions. T&amp;C</li>
-            <li>
-              Bank Offer: Extra ₹750 off on SBI Credit Card and Credit EMI Txns on Net Cart Value of
-              ₹24,990 and above. T&amp;C
-            </li>
-            <li>
-              Bank Offer: Extra ₹1750 off on SBI Credit Card and Credit EMI Txns on Net Cart Value of
-              ₹49,990 and above. T&amp;C
-            </li>
-            <li>Freebie: Flat ₹550 off on TimesPrime Annual Membership. T&amp;C</li>
-            {/* Add more offers as needed */}
-          </ul>
-          <p className="view-more-offers">View 11 more offers</p>
-        </div>
-        {/* reviews section */}
-        <Reviews />
-      </div>
-    </div>
+        {/* Right Column - Product Details */}
+        <Grid item xs={12} md={6}>
+          <Box p={2}>
+            <Typography variant="h4" gutterBottom>
+              {product.title}
+            </Typography>
+            <Typography variant="body1" paragraph>
+              {product.description}
+            </Typography>
+            {/* Add other product details here */}
+            <Box mt={2} mb={2}>
+              <Button variant="contained" color="warning" onClick={() => console.log('Buy now')} style={{marginRight:"5px"}}>
+                Buy now
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<AddShoppingCartIcon />}
+                onClick={() => { addData(product) }}
+              >
+                Add to Cart
+              </Button>
+              <IconButton color="default" aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton color="default" aria-label="share">
+                <ShoppingCartIcon />
+              </IconButton>
+            </Box>
+            {/* Display available offers with good styling */}
+            <Box mt={2}>
+              <Typography variant="h6" gutterBottom>
+                Available Offers
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Bank Offer: 10% off on Samsung Axis Bank Infinite Credit Card (T&C)
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Bank Offer: 10% off on Samsung Axis Bank Signature Credit Card (T&C)
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Bank Offer: 5% Cashback on Flipkart Axis Bank Card (T&C)
+              </Typography>
+              <Typography variant="body2" paragraph>
+                Special Price: Get extra ₹7800 off (price inclusive of cashback/coupon) (T&C)
+              </Typography>
+              <Typography variant="body2">
+                View 3 more offers
+              </Typography>
+            </Box>
+            {/* Review Section */}
+            <ReviewSection productId={id} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

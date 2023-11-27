@@ -1,3 +1,5 @@
+/* Navbar.module.css */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -22,7 +24,6 @@
 .leftSection {
   display: flex;
   align-items: center;
-  
 }
 
 .productsMenu {
@@ -41,7 +42,6 @@
 .rightSection {
   display: flex;
   align-items: center;
-  text-decoration: none;
 }
 
 .button {
@@ -76,21 +76,17 @@
   font-size: 14px;
   width: 400px;
   margin-right: 20px;
-  /* Default margin for larger screens */
-
-  @media (max-width: 700px) {
-    display: none;
-  }
 }
 
 .searchBar:focus {
   outline: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .header {
     flex-direction: column;
     text-align: center;
+    padding: 15px; /* Increase padding for better spacing */
   }
 
   .leftSection,
@@ -113,10 +109,17 @@
     margin-right: 0;
     margin-bottom: 10px;
   }
-}
+  
+  .rightSection {
+    flex-direction: column;
+    align-items: center;
+  }
 
-/* Add margin to the main body */
-.main-body {
-  margin: 20px;
-  /* Adjust the margin as needed */
+  .button {
+    margin: 5px; /* Add some margin for better spacing */
+  }
+
+  .cartLink {
+    margin-right: 0;
+  }
 }

@@ -1,56 +1,47 @@
-/* ProductCards.css */
-
-.root {
+.card-container {
     display: flex;
+    flex-wrap: wrap;
+    margin-left: 20rem;
+    margin-top: 2rem;
+    z-index: -2;
   }
   
-  .categoriesContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    background-color: #fff;
-    position: sticky;
-    top: 64px; /* Adjust based on your navbar height */
-    z-index: 1000;
-  }
-  
-  .categoryBadge {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .card {
+    margin: 20px;
+    border: 2px solid #ededed;
+    padding: 20px;
     cursor: pointer;
   }
   
-  .filtersSection {
-    width: 200px;
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    padding: 20px;
-    border-right: 1px solid #ccc;
-    z-index: 1;
+  .card-img {
+    width: 13rem;
+    margin-bottom: 1rem;
   }
   
-  .productsSection {
-    flex: 1;
-    padding: 20px;
+  .card-title {
+    margin-bottom: 1rem;
   }
   
-  .productCard {
-    height: 100%;
+  .card-reviews {
+    margin-bottom: 1rem;
     display: flex;
-    flex-direction: column;
   }
   
-  .productImage {
-    object-fit: cover;
-    height: 200px;
+  .rating-star {
+    color: #f1c56c;
   }
   
-  .productContent {
-    flex: 1;
+  .total-reviews {
+    font-size: 0.9rem;
+    margin-left: 10px;
   }
   
-  /* Add more styling as needed */
+  .card-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
+  .bag-icon {
+    color: #535353;
+  }

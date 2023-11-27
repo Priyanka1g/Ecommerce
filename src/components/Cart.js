@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart, clearCart, removeSingle, removeToCart } from '../redux/features/cartSlice';
 import './Cart.css'
 import { useNavigate } from 'react-router-dom';
+import { addToOrders, clearOrders } from '../redux/features/orderSlice';
 
 const Cart = () => {
     const [totalprice, setPrice] = useState(0);
@@ -17,6 +18,17 @@ const Cart = () => {
     const { carts } = useSelector((state) => state.cart);
 
     //functions that handling the increment. decrement
+
+    const handleGoToCheckout = () => {
+        dispatch(addToOrders(carts)); // Add the cart data to orders
+        dispatch(clearCart()); // Clear the cart
+        navigate('/checkout', {
+          state: {
+            totalprice: totalprice,
+            totalquantity: totalquantity,
+          },
+        }
+        )}
 
     const handleIncrement = (data) => {
         dispatch(addToCart(data))
@@ -35,15 +47,7 @@ const Cart = () => {
         dispatch(clearCart())
     }
 
-    const handleGoToCheckout = () => {
-        navigate('/checkout', {
-            state: {
-                totalprice: totalprice,
-                totalquantity: totalquantity,
-            },
-        });
-    };
-
+ 
     //calculating total price and total quantity
     const priceHandler = () => {
         let totalprice = 0;
