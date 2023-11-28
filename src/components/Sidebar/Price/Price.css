@@ -5,3 +5,15 @@
 .ml {
   margin-left: 20px;
 }
+
+.sidebar-items {
+  margin-top: 20px;
+}
+
+/* Apply flexbox styles for smaller screens */
+@media (max-width: 768px) {
+  .sidebar-items {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+  }
+}

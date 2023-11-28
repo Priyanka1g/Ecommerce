@@ -33,6 +33,7 @@ const OrderItems = () => {
 
     const handleSaveReview = () => {
         const currentDate = new Date();
+        // console.log(currentDate)
         const reviewData = {
             productId: selectedProduct.id,
             rating,

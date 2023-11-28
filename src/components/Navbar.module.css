@@ -74,19 +74,20 @@
   padding: 8px 12px;
   border-radius: 0px;
   font-size: 14px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   margin-right: 20px;
 }
 
-.searchBar:focus {
-  outline: none;
+.hideSearchBar {
+  display: none;
 }
 
 @media (max-width: 700px) {
   .header {
     flex-direction: column;
     text-align: center;
-    padding: 15px; /* Increase padding for better spacing */
+    padding: 15px;
   }
 
   .leftSection,
@@ -96,8 +97,11 @@
   }
 
   .searchBar {
-    width: 100%;
-    margin-right: 0;
+    display: none;
+  }
+
+  .hideSearchBar {
+    display: block;
   }
 
   .productsMenu {
@@ -109,14 +113,14 @@
     margin-right: 0;
     margin-bottom: 10px;
   }
-  
+
   .rightSection {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    /* align-items: center; */
   }
 
   .button {
-    margin: 5px; /* Add some margin for better spacing */
+    margin: 5px;
   }
 
   .cartLink {

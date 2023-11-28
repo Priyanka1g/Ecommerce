@@ -37,7 +37,6 @@ const Navbar = (props) => {
               <ShoppingCart />
             </Badge>
           </NavLink>
-          
         </div>
       </div>
     </header>
