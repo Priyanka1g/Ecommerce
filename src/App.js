@@ -1,87 +1,97 @@
-import React, { useState } from 'react'
+// App.js
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { login, logout, selectIsLoggedIn } from './redux/features/loginSlice'
+import { signup, selectSignupInfo } from './redux/features/signupSlice';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Navbar from './components/Navbar';
+import ProductCards from './components/ProductCards';
 import Cart from './components/Cart';
-import { Route, Routes } from 'react-router-dom';
 import Checkout from './components/Checkout';
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
-import Signup from './components/Signup';
 import ProductDetails from './components/ProductDetails';
-import ProductCards from './components/ProductCards';
 import UserProfile from './components/UserProfile';
 import OrderItems from './components/OrderItems';
-import './App.css'
+
+import './App.css';
+
+const usersData = require('./users.json');
+const usersArray = usersData.users; // Access the "users" array
+
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    useEffect(() => {
-        // Check if the user is already logged in from local storage
-        const storedEmail = localStorage.getItem('userEmail');
-        const storedPassword = localStorage.getItem('userPassword');
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const signupInfo = useSelector(selectSignupInfo);
 
-        //check user exist alredy if yes then setloggedin true
-        if (storedEmail && storedPassword) {
-            setIsLoggedIn(true);
-        }
-    }, []);
+  const [searchTerm, setSearchTerm] = useState('');
 
-    //When user sign up this will run 
-    const signupHandler = (name, email, password) => {
-        // Storing user information in local storage
-        localStorage.setItem('userName', name);
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userPassword', password);
-        // Set the user as logged in
-        setIsLoggedIn(true);
-        toast.success('Signup successful!');
+  const signupHandler = (name, email, password) => {
+    // You would typically hash the password before storing it in a real-world scenario
+    const newUser = { name, email, password };
+
+    // Push the new user to the array
+    usersArray.push(newUser);
+
+    // Assuming that you have a `signup` action that updates the Redux store with the user information
+    dispatch(signup(newUser));
+
+    // Automatically log in after signup
+    dispatch(login());
+
+    // Display a success message
+    toast.success('Signup successful!');
+  };
+
+  const loginHandler = (email, password) => {
+    // Use find on the array
+    const user = usersArray.find(u => u.email === email && u.password === password);
+
+    if (user) {
+      dispatch(login());
+      toast.success('Login successful!');
+    } else {
+      toast.error('Invalid login credentials. Please try again.');
     }
+  };
 
-    //This function will run when user login
-    const loginHandler = (email, password) => {
-        const storedEmail = localStorage.getItem('userEmail');
-        const storedPassword = localStorage.getItem('userPassword');
+  const logoutHandler = () => {
+    dispatch(logout());
+    toast.success('Logout successful!');
+  };
 
-        if (email === storedEmail && password === storedPassword) {
-            setIsLoggedIn(true);
-            toast.success('Login successful!');
-        } else {
-            toast.error('Invalid login credentials. Please try again.');
-        }
-    };
-
-    //this function will run when user logout
-    const logoutHandler = () => {
-        setIsLoggedIn(false)
-        // localStorage.removeItem('userName');
-        // localStorage.removeItem('userEmail');
-        // localStorage.removeItem('userPassword');
-        toast.success('Logout successful!');
+  useEffect(() => {
+    // No need to check localStorage; you can use a server-based solution here
+    // For simplicity, let's assume a user is logged in if the signupInfo is available
+    if (signupInfo.userEmail) {
+      dispatch(login());
     }
-    return (
+  }, [dispatch, signupInfo]);
+
+  return (
+    <>
+      {isLoggedIn ? (
         <>
-            {isLoggedIn ? (
-                <>
-                    <Navbar onLogout={logoutHandler} getDataHandler={setSearchTerm} />
-                    <Routes>
-                        <Route path='/' element={<ProductCards searchTerm={searchTerm}/>} />
-                        <Route path='/cart' element={<Cart />} />
-                        <Route path='/checkout' element={<Checkout />} />
-                        <Route path='/details/:id' element={<ProductDetails />} />
-                        <Route path='/userprofile' element={<UserProfile/>}></Route>
-                        <Route path='/orderpage' element={<OrderItems/>}></Route>
-                    </Routes>
-                    {/* <Footer /> */}
-                    <Toaster />
-                </>
-            ) : (
-                <Routes>
-                    <Route path="/" element={<Login onLogin={loginHandler} />} />
-                    <Route path="/signup" element={<Signup onSignup={signupHandler} />} />
-                </Routes>
-            )}
+          <Navbar onLogout={logoutHandler} getDataHandler={setSearchTerm} />
+          <Routes>
+            <Route path='/' element={<ProductCards searchTerm={searchTerm} />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/details/:id' element={<ProductDetails />} />
+            <Route path='/userprofile' element={<UserProfile />} />
+            <Route path='/orderpage' element={<OrderItems />} />
+          </Routes>
+          <Toaster />
         </>
-    )
+      ) : (
+        <Routes>
+          <Route path="/" element={<Login onLogin={loginHandler} />} />
+          <Route path="/signup" element={<Signup onSignup={signupHandler} />} />
+        </Routes>
+      )}
+    </>
+  );
 }
 
-export default App
+export default App;
