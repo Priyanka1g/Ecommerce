@@ -1,0 +1,60 @@
+.loginContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .login {
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle box shadow */
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .control {
+    margin-bottom: 15px;
+    padding: 0 15px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .signupLink {
+    color: #1976D2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signupLink:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .loginContainer {
+      padding: 20px; 
+    }
+  
+    .login {
+      border-radius: 0; 
+      padding: 1px; 
+    }
+  }

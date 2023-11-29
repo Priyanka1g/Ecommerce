@@ -1,0 +1,53 @@
+/* Style for the entire page */
+body {
+  margin: 0;
+  /* background-color: rgb(0, 0, 0); */
+  overflow-y: scroll;
+  /* Always show vertical scrollbar */
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+/* Style for the scrollbar */
+body::-webkit-scrollbar {
+  width: 15px;
+  /* Set the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* Set the color of the thumb */
+  border-radius: 0px;
+  /* Round the corners of the thumb */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #333;
+  /* Set the color of the track */
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(97, 97, 97);
+}
+
+li {
+  list-style: none;
+}
+
+.btns {
+  padding: 10px 20px;
+  margin-right: 6px;
+  background: transparent;
+  border: none;
+  border: 0.6px solid #ccc;
+  border-radius: 5px;
+  color: #323232;
+  cursor: pointer;
+}

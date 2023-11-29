@@ -1,0 +1,122 @@
+
+.cardsdetails {
+  margin-top: 20px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-empty {
+  margin-top: 50px;
+  font-size: 24px;
+  color: blue;
+}
+
+.product-img img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.product-name p {
+  margin: 0;
+}
+
+.prdct-qty-container {
+  display: flex;
+  align-items: center;
+}
+
+.prdct-qty-btn {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.qty-input-box {
+  width: 30px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 700px) {
+  /* Media Query for Small Screens */
+@media (max-width: 684px) {
+  /* ... (your existing styles) */
+
+  /* Adjust table styles for smaller screens */
+  .MuiTable-root {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .MuiTableRow-root .MuiButton-containedPrimary {
+    font-size: 10px; /* Adjust the font size for the delete button */
+    padding: 10px; /* Adjust padding for the delete button */
+  }
+
+  /* Larger product image on small screens */
+  .MuiTableRow-root .product-img img {
+    width: 100px; /* Adjust the width of the product image */
+    height: 100px; /* Adjust the height of the product image */
+    object-fit: cover;
+  }
+
+  .delete{
+    font-size: xx-small;
+  }
+
+  /* Larger product name on small screens */
+  .MuiTableRow-root .product-name {
+    font-size: 16px; /* Adjust the font size for the product name */
+  }
+  .MuiTableHead-root {
+    display: none; /* Hide table head for smaller screens */
+  }
+
+  .MuiTableBody-root {
+    display: block;
+  }
+
+  .MuiTableRow-root {
+    display: block;
+    margin-bottom: 20px; /* Add more margin to separate rows */
+  }
+
+  .MuiTableRow-root:last-child {
+    margin-bottom: 0; /* Remove margin for the last row */
+  }
+
+  .MuiTableCell-root {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: left;
+  }
+
+  /* Specific styles for product details on smaller screens */
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-details img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-bottom: 10px; /* Add space between image and text */
+  }
+
+  .product-quantity, .product-price {
+    margin-bottom: 10px; /* Add space between quantity and price */
+  }
+}
+
+}
